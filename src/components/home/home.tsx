@@ -5,15 +5,7 @@ export const Home = () => (
   <div>
     <div className="welcome-message">
       <Typography>
-        Hi there! You are running Vulcan Next! You are doing great so far.
-      </Typography>
-      <Typography>
-        Below, find Vulcan Next Readme loaded from a markdown file using{" "}
-        <a href="https://mdxjs.com/">MDXJS</a>.
-      </Typography>
-      <Typography>
-        You can also read the rest of{" "}
-        <a href="/docs">Vulcan documentation here.</a>
+        Hi there! You are doing great so far.
       </Typography>
       <Typography>Have fun!</Typography>
     </div>

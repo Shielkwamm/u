@@ -91,7 +91,7 @@ const schema: VulcanSchema = {
 
 
 
-export interface SampleModelType extends VulcanDocument {
+export interface ProperModelType extends VulcanDocument {
   someField: string;
 }
 
@@ -117,6 +117,6 @@ export const ProperModel = createGraphqlModel({
   },
 });
 
-export const SampleModelConnector = createMongooseConnector<SampleModelType>(
+export const ProperModelConnector = createMongooseConnector<ProperModelType>(
   ProperModel
 );

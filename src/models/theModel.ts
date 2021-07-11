@@ -76,7 +76,7 @@
  
  
  
- export interface SampleModelType extends VulcanDocument {
+ export interface TheModelType extends VulcanDocument {
    someField: string;
  }
  
@@ -102,7 +102,7 @@
    },
  });
  
- export const SampleModelConnector = createMongooseConnector<SampleModelType>(
+ export const TheModelConnector = createMongooseConnector<TheModelType>(
   TheModel
  );
  
