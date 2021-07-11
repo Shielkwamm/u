@@ -43,3 +43,6 @@ storybook-static
 /public/robots.txt.yalc
 yalc.lock
 .yalc/
+
+# other stuff
+.env.development
