@@ -39,13 +39,6 @@ const schema: VulcanSchema = {
       return new Date();
     },
   },
-  website: {
-    type: String,
-    optional: true,
-    canRead: ["guests"],
-    canUpdate: ["admins"],
-    canCreate: ["admins"]
-  },
   glyphs: {
     type: String,
     optional: true,
@@ -91,15 +84,17 @@ const schema: VulcanSchema = {
 
 
 
-export interface ProperModelType extends VulcanDocument {
-  someField: string;
+export interface ProperType extends VulcanDocument {
+  name: string;
+  description?: string;
+  glyphs: string;
 }
 
 const name = "Proper" // Change this value when creating your own model
 const typeName = name
 const multiTypeName = "Propers" // Change this value when creating your own model
-export const ProperModel = createGraphqlModel({
-  name: "proper",
+export const Proper = createGraphqlModel({
+  name: "Proper",
   schema,
   graphql: {
     typeName,
@@ -117,6 +112,4 @@ export const ProperModel = createGraphqlModel({
   },
 });
 
-export const ProperModelConnector = createMongooseConnector<ProperModelType>(
-  ProperModel
-);
+export const ProperConnector = createMongooseConnector<ProperType>(Proper);

@@ -19,7 +19,6 @@
    },
    organizationName: {
      type: String,
-     optional: true,
      canRead: ["guests"],
      canUpdate: ["admins"],
      canCreate: ["admins"]
@@ -76,15 +75,18 @@
  
  
  
- export interface TheModelType extends VulcanDocument {
-   someField: string;
+ export interface OrganizationType extends VulcanDocument {
+   organizationName: string;
+   organizationWebsite?: string;
+   owner?: string;
+   teams?: string;
  }
  
- const name = "The" // Change this value when creating your own model
+ const name = "Organization" // Change this value when creating your own model
  const typeName = name
- const multiTypeName = "Thes" // Change this value when creating your own model
- export const TheModel = createGraphqlModel({
-   name: "the",
+ const multiTypeName = "Organizations" // Change this value when creating your own model
+ export const Organization = createGraphqlModel({
+   name: "Organization",
    schema,
    graphql: {
      typeName,
@@ -102,7 +104,5 @@
    },
  });
  
- export const TheModelConnector = createMongooseConnector<TheModelType>(
-  TheModel
- );
+ export const OrganizationConnector = createMongooseConnector<OrganizationType>(Organization);
  

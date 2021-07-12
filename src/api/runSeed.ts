@@ -15,28 +15,30 @@ function runSeed() {
       serverSelectionTimeoutMS: isLocalMongo ? 3000 : undefined,
     }) // fail the seed early during development
       .then(() => {
-        debugMongo("Connected to db, seeding admin and restaurants");
+        debugMongo("Connected to db, seeding admin and organizations");
         // TODO: what is the best pattern to seed in a serverless context?
         // We pass the default graphql context to the seed function,
         // so it can access our models
         seedDatabase(contextBase);
-        // also seed restaurant manually to demo a custom server
-        const seedRestaurants = async () => {
+        // seed organizations
+        const seedOrganizations = async () => {
           const db = mongoose.connection;
-          const count = await db.collection("restaurants").countDocuments();
+          const count = await db.collection("organizations").countDocuments();
           if (count === 0) {
-            db.collection("restaurants").insertMany([
+            db.collection("organizations").insertMany([
               {
-                name: "The Restaurant at the End of the Universe",
+                organizationName: "Shielkwamm",
               },
-              { name: "The Last Supper" },
-              { name: "Shoney's" },
-              { name: "Big Bang Burger" },
-              { name: "Fancy Eats" },
+              {
+                organizationName: "LearnEverything",
+              },
+              {
+                organizationName: "staticStatic",
+              },
             ]);
           }
         };
-        seedRestaurants();
+        seedOrganizations();
       })
       .catch((err) => {
         console.error(

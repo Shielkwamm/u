@@ -1,5 +1,6 @@
 // Export all your models here
 // Please do not remove the User model, which is necessary for auth
-import { ProperModel } from "./properModel";
+import { Proper } from "./proper";
 import { User } from "./user";
-export default [User, ProperModel];
+import { Organization } from "./organization";
+export default [User, Proper, Organization];
