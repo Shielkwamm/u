@@ -5,7 +5,7 @@ import Router from "next/router";
 import useSWR from "swr";
 
 const organizationFetcher = (url) =>
-fetch(url)
+  fetch(url)
   .then((r) => r.json())
   .then((data) => {
     return { organization: data?.organization || null };
