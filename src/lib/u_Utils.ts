@@ -8,3 +8,7 @@ export const getRandomU = (uIndex = 0) => {
 export const getAllUs = () => {
   return "ṵṷṹṻụủứừ⒰υṳỤỦỨỪỬῢΰῦṺṴUὺῧuṲỮỰṶṸύῠῡửữựὐὑὒὓὔὕὖὗ";
 }
+
+export const getAllUpsideDownUs = () => {
+  return "⒩ηṅṇṉṋἠἡἢἣἤἥἦἧὴήᾐᾑᾒᾓᾔᾕᾖᾗῂῃῄῆῇn"
+}
