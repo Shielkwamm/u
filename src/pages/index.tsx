@@ -33,7 +33,7 @@ const HomePage = ({ source }) => {
 };
 
 export async function getStaticProps() {
-  const filePath = path.resolve("./README.md");
+  const filePath = path.resolve("./src/content/docs/home.md");
   const source = await fsPromises.readFile(filePath, { encoding: "utf8" });
   // MDX text - can be from a local file, database, anywhere
   // Does a server-render of the source and relevant React wrappers + allow to inject React components

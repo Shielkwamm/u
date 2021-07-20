@@ -17,13 +17,13 @@
      optional: true,
      canRead: ["guests"],
    },
-   organizationName: {
+   name: {
      type: String,
      canRead: ["guests"],
      canUpdate: ["admins"],
      canCreate: ["admins"]
    },
-   organizationWebsite: {
+   repo: {
      type: String,
      optional: true,
      canRead: ["guests"],
@@ -36,21 +36,34 @@
        return new Date();
      },
    },
-   owner: {
+   description: {
      type: Object,
      optional: true,
      canRead: ["guests"],
      canUpdate: ["admins"],
      canCreate: ["admins"]
    },
-   teams: {
+   bigIdea: {
      type: Object,
+     optional: true,
+     canRead: ['guests'],
+     canUpdate: ["admins"],
+     canCreate: ["admins"]
+   },
+   productOwner: {
+     type: String,
      optional: true,
      canRead: ["guests"],
      canUpdate: ["admins"],
      canCreate: ["admins"]
    },
-
+   leanCanvas: {
+     type: Object,
+     optional: true,
+     canRead: ['guests'],
+     canUpdate: ['admins'],
+     canCreate: ['admins']
+   }
  };
  
  /*
@@ -75,18 +88,18 @@
  
  
  
- export interface OrganizationType extends VulcanDocument {
-   organizationName: string;
-   organizationWebsite?: string;
+ export interface ProductType extends VulcanDocument {
+   productName: string;
+   productWebsite?: string;
    owner?: string;
    teams?: string;
  }
  
- const name = "Organization" // Change this value when creating your own model
+ const name = "Product" // Change this value when creating your own model
  const typeName = name
- const multiTypeName = "Organizations" // Change this value when creating your own model
- export const Organization = createGraphqlModel({
-   name: "Organization",
+ const multiTypeName = "Products" // Change this value when creating your own model
+ export const Product = createGraphqlModel({
+   name: "Product",
    schema,
    graphql: {
      typeName,
@@ -104,5 +117,5 @@
    },
  });
  
- export const OrganizationConnector = createMongooseConnector<OrganizationType>(Organization);
+ export const ProductConnector = createMongooseConnector<ProductType>(Product);
  
