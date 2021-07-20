@@ -42,10 +42,10 @@ const ListSingle = ({ organization }) => {
     <hr/>
     <Grid container spacing={3}>
     <Grid item xs={4} style={{order: randomOrder}}>
-        <a href={`/organization/_sh_/${organization.organizationName}`} ><Button variant="contained">linkage</Button></a>
+        <a href={`/organization/linkage/${organization.organizationName}`} ><Button variant="contained">linkage</Button></a>
       </Grid>
       <Grid item xs={4}>
-          <a href={`/organization/_sh_/${organization.organizationName}`} ><Button variant="contained" color="primary">_sh_</Button></a>
+          <a href={`/organization/proper/${organization.organizationName}`} ><Button variant="contained" color="primary">_sh_</Button></a>
       </Grid>
       <Grid item xs={4}>
         <span style={{fontSize: randomFontSizeRepo + "px"}}> <a href={`https://github.com/${organization.organizationName}`}>gith{randomU}b</a></span>
