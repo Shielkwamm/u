@@ -17,9 +17,9 @@ const { HomeStory } = composeStories(stories);
 describe('components/home', () => {
   test("renders home with testing-react", () => {
     const { queryAllByText } = render(<HomeStory />);
-    expect(queryAllByText("Vulcan Next", { exact: false })).not.toBeNull();
+    expect(queryAllByText("⒰", { exact: false })).not.toBeNull();
     expect(
-      queryAllByText("Vulcan Next", { exact: false }).length
+      queryAllByText("⒰", { exact: false }).length
     ).toBeGreaterThan(0);
   });
 });
