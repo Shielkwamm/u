@@ -20,7 +20,7 @@ function runSeed() {
         // We pass the default graphql context to the seed function,
         // so it can access our models
         seedDatabase(contextBase);
-        // seed organizations
+        //seed organizations
         const seedOrganizations = async () => {
           const db = mongoose.connection;
           const count = await db.collection("organizations").countDocuments();
@@ -39,6 +39,66 @@ function runSeed() {
           }
         };
         seedOrganizations();
+        const seedOrganizationPlugins = async () => {
+          const db = mongoose.connection;
+          const count = await db.collection("seedOrganizationPlugins").countDocuments();
+          if (count === 0) {
+            db.collection("seedOrganizationPlugins").insertMany([
+              {
+                name: "Shielkwamm",
+              },
+              {
+                name: "LearnEverything",
+              },
+              {
+                name: "staticStatic",
+              },
+            ]);
+          }
+        };
+        seedOrganizationPlugins();    
+        
+        
+        // seed Products
+
+
+
+        const seedProducts = async () => {
+          const db = mongoose.connection;
+          const count = await db.collection("products").countDocuments();
+          if (count === 0) {
+            db.collection("products").insertMany([
+              {
+                name: "Shielkwamm",
+              },
+              {
+                name: "LearnEverything",
+              },
+              {
+                name: "staticStatic",
+              },
+            ]);
+          }
+        };
+        seedProducts();
+        const seedProductPlugins = async () => {
+          const db = mongoose.connection;
+          const count = await db.collection("products").countDocuments();
+          if (count === 0) {
+            db.collection("products").insertMany([
+              {
+                organizationName: "Shielkwamm",
+              },
+              {
+                organizationName: "LearnEverything",
+              },
+              {
+                organizationName: "staticStatic",
+              },
+            ]);
+          }
+        };
+        seedProductPlugins();
       })
       .catch((err) => {
         console.error(

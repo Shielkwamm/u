@@ -46,3 +46,4 @@ yalc.lock
 
 # other stuff
 .env.development
+.env.test

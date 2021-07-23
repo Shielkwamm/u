@@ -60,6 +60,7 @@
     "@mdx-js/loader": "^1.6.6",
     "@mdx-js/react": "^1.6.13",
     "@next/mdx": "^10.0.2",
+    "@octokit/graphql": "^4.6.4",
     "@vulcanjs/demo": "^0.0.7",
     "@vulcanjs/mdx": "^0.2.3-alpha.0",
     "@vulcanjs/meteor-legacy": "^0.1.8",
