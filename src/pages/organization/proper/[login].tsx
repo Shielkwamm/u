@@ -18,7 +18,6 @@ const Organization = ({ organizationProper }) => {
     //console.log(data?.style?.colors)
     let randomIndex:number = -1;
     while (randomIndex === index || randomIndex === -1) {
-      console.log(randomIndex)
       randomIndex = Math.floor(Math.random() * data?.style?.colors.length);
     }
     return data?.style?.colors[randomIndex].hex;
@@ -32,20 +31,23 @@ const Organization = ({ organizationProper }) => {
         <>
       <h1>=== {data.name} ===</h1>
       <h2 style={{textAlign: "right"}}>level 1</h2>
+      <div style={{height: "5px", backgroundColor: `${getRandomColor(4)}`}}/>
       <h2 style={{textAlign: "center"}}>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h2>
       <Grid container>
         {data?.style?.colors.map((color, index) => (
           <Grid key={index} item xs={4} style={{height: 240, backgroundColor: color.hex}}>
-            <p style={{color: getRandomColor(index)}}>{color.name}</p>
-            <p style={{color: getRandomColor(index)}}>{color.hex}</p>
+            <p style={{fontFamily: data?.style?.fonts[0].family, color: getRandomColor(index)}}>{color.name}</p>
+            <p style={{fontFamily: data?.style?.fonts[1].family, color: getRandomColor(index)}}>{color.hex}</p>
           </Grid>
         ))}
         
         
         <Grid item xs={12} style={{height: 240}}>
-          <h3>Comm <a href={"https://shielkwamm.com/comm"}>link</a></h3>
-            <iframe style={{width: "100%"}} frameBorder="0"src="https://shielkwamm.com/comm" >
+          <div style={{margin: "5px 15px", padding: "5px", border: `1px solid ${getRandomColor(3)}`}}>
+          <h3 style={{color: getRandomColor(3)}}>Comm <a href={"https://shielkwamm.com/comm"}>link</a></h3>
+            <iframe style={{margin: "0 -15px", width: "calc(100% + 10px)"}} frameBorder="0"src="https://shielkwamm.com/comm" >
           </iframe>
+          </div>
         </Grid>
       </Grid>
       </>
