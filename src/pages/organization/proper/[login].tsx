@@ -2,31 +2,18 @@ import { useOrganization } from "~/components/organization/hooks";
 import Layout from "~/components/organization/layout";
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client';
-import { request } from 'graphql-request'
 import useSWR from 'swr'
+import { Typography } from "@material-ui/core";
+import { Grid } from '@material-ui/core';
 
-const fetcher = query => request('https://api.github.com/graphql', query)
+const fetcher = url => fetch(url).then(res => res.json());
 
-const Organization = () => {
+const Organization = ({ organizationProper }) => {
   const router = useRouter();
-  const organizationName = router.query.organizationName;
-  const { data, error } = useSWR(
-    `query {
-      organization (login: ${router.query.organizationName}){
-        login
-        teams (first: 20){
-          edges {
-            node {
-              id
-              name
-            }
-          }
-        }
-      }
-    }`,
+  const organizationName = router.query.login;
+  const { data, error } = useSWR(`https://raw.githubusercontent.com/${organizationName}/sh-proper/main/proper.json`,
     fetcher
   )
-  console.log(data)
   return (
     <Layout>
       {!data? (
@@ -34,18 +21,22 @@ const Organization = () => {
       ) :
       (
         <>
-      <h1>{organizationName}</h1>
-      <div>level 1</div>
-      <div>owner</div>
-      <p>glyphs list</p>
-      <p>Proper Details</p>
-      <OrganizationTeams teams={data.teams}/>
-      <div>
-        <a href={``}>Show</a>
-      </div>
-      <div>
-        <a href={`https://github.com/${organizationName}`}>Github</a>
-      </div>
+      <h1>{data.name}</h1>
+      <Typography variant={"h3"} color={"textSecondary"}>level 1</Typography>
+      <h1>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h1>
+      <Grid container>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["1"]}}>{data.colorScheme["1"]}</Grid>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["2"]}}>{data.colorScheme["2"]}</Grid>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["3"]}}>{data.colorScheme["3"]}</Grid>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["4"]}}>{data.colorScheme["4"]}</Grid>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["background"]}}>{data.colorScheme["background"]}</Grid>
+        <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["foreground"]}}>{data.colorScheme["foreground"]}</Grid>
+        <Grid item xs={4} style={{height: 240}}>
+          <h3>Comm <a href={"https://shielkwamm.com/comm"}>link</a></h3>
+            <iframe src="https://shielkwamm.com/comm" >
+          </iframe>
+        </Grid>
+      </Grid>
       </>
     )}
     </Layout>
@@ -54,12 +45,11 @@ const Organization = () => {
 
 export default Organization;
 
-const OrganizationTeams = ({ teams }) => (
-  <>
-    {teams.map((organiation) => (
-      <p>Team</p>
-    ))}
-  </>
-)
+export async function getServerSideProps(context) {
+  const organizationLogin = context.query.login;
+  return {
+    props: {}, // will be passed to the page component as props
+  }
+};
 
 //{organizations?.map((organization) => (
