@@ -36,9 +36,22 @@ const ShLayout = (props) => (
       body {
         margin: 0;
         color: #333;
+        background-color: ${props?.style?.backgroundColor};
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, Noto Sans, sans-serif, "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      }
+      h1 {
+        color: ${props?.style?.['1']};
+      }
+      h2 {
+        color: ${props?.style?.['2']};
+      }
+      h3 {
+        color: ${props?.style?.['3']};
+      }
+      a {
+        color: ${props?.style?.['4']};
       }
       .container {
         margin: 0 auto;

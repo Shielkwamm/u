@@ -1,10 +1,10 @@
-import { useOrganization } from "~/components/organization/hooks";
-import ShLayout from "~/components/Layout/shLayout";
+import { useOrganization } from "~/components/organization/hooks"
 import { useRouter } from 'next/router'
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client'
 import useSWR from 'swr'
-import { Typography } from "@material-ui/core";
-import { Grid } from '@material-ui/core';
+import { Typography } from "@material-ui/core"
+import { Grid } from '@material-ui/core'
+import ShLayout from "~/components/layout/shLayout"
 
 const fetcher = url => fetch(url).then(res => res.json());
 
@@ -15,7 +15,7 @@ const Organization = ({ organizationProper }) => {
     fetcher
   )
   return (
-    <ShLayout>
+    <ShLayout style={data?.colorScheme}>
       {!data? (
         <h1>loading</h1>
       ) :
@@ -23,7 +23,7 @@ const Organization = ({ organizationProper }) => {
         <>
       <h1>=== {data.name} ===</h1>
       <Typography variant={"h3"} color={"textSecondary"}>level 1</Typography>
-      <h1>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h1>
+      <h2>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h2>
       <Grid container>
         <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["1"]}}>{data.colorScheme["1"]}</Grid>
         <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["2"]}}>{data.colorScheme["2"]}</Grid>
@@ -31,9 +31,9 @@ const Organization = ({ organizationProper }) => {
         <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["4"]}}>{data.colorScheme["4"]}</Grid>
         <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["background"]}}>{data.colorScheme["background"]}</Grid>
         <Grid item xs={4} style={{height: 240, backgroundColor: data.colorScheme["foreground"]}}>{data.colorScheme["foreground"]}</Grid>
-        <Grid item xs={4} style={{height: 240}}>
+        <Grid item xs={12} style={{height: 240}}>
           <h3>Comm <a href={"https://shielkwamm.com/comm"}>link</a></h3>
-            <iframe src="https://shielkwamm.com/comm" >
+            <iframe style={{width: "100%"}} src="https://shielkwamm.com/comm" >
           </iframe>
         </Grid>
       </Grid>
