@@ -1,4 +1,5 @@
 import { Typography } from "@material-ui/core";
+import { getRandomU } from "~/lib/u_Utils"
 /**
  * TODO: the useUser hook doesn't seem to be updated on route change when the component is put into _app
  */
@@ -13,25 +14,35 @@ const Header = () => {
       <nav>
         <ul>
           <li>
-            <Link href="/">
-              <a>Home</a>
+            <Link href="/u">
+              <a>{getRandomU()}</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/organizations">
+              <a>organizations</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/products">
+              <a>products</a>
             </Link>
           </li>
           {user ? (
             <>
               <li>
                 <Link href="/profile">
-                  <a>Profile</a>
+                  <a>profile</a>
                 </Link>
               </li>
               <li>
-                <a href="/api/logout">Logout</a>
+                <a href="/api/logout">logout</a>
               </li>
             </>
           ) : (
             <li>
               <Link href="/login">
-                <a>Login</a>
+                <a>login</a>
               </Link>
             </li>
           )}
