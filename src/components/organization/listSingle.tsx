@@ -33,22 +33,24 @@ const ListSingle = ({ organization }) => {
   })
   
 
-
   return (
     <animated.div style={opacityPulse}>
   <Paper elevation={randomElevation}>
     <Box m={randomMargin}>
-    <h2 style={{fontSize: randomFontSizeOrganization}}>{organization.organizationName}</h2>
+    <h2 style={{fontSize: randomFontSizeOrganization}}>{organization.login}</h2>
     <hr/>
     <Grid container spacing={3}>
-    <Grid item xs={4} style={{order: randomOrder}}>
-        <a href={`/organization/linkage/${organization.organizationName}`} ><Button variant="contained">linkage</Button></a>
+    <Grid item xs={6}>
+        <span style={{fontSize: randomFontSizeRepo + "px"}}> <a href={`https://github.com/${organization.login}`}>gith{randomU}b</a></span>
       </Grid>
-      <Grid item xs={4}>
-          <a href={`/organization/proper/${organization.organizationName}`} ><Button variant="contained" color="primary">_sh_</Button></a>
+      <Grid item xs={6}>
+        <span style={{fontSize: randomFontSizeRepo + "px"}}> <a href={organization.culture}>c{randomU}lture</a></span>
       </Grid>
-      <Grid item xs={4}>
-        <span style={{fontSize: randomFontSizeRepo + "px"}}> <a href={`https://github.com/${organization.organizationName}`}>gith{randomU}b</a></span>
+    <Grid item xs={6} style={{order: randomOrder}}>
+        <a href={`/organization/linkage/${organization.login}`} ><Button variant="contained">linkage</Button></a>
+      </Grid>
+      <Grid item xs={6}>
+          <a href={`/organization/proper/${organization.login}`} ><Button variant="contained" color="primary">_sh_</Button></a>
       </Grid>
     </Grid>
     </Box>

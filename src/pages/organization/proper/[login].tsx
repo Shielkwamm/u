@@ -1,5 +1,5 @@
 import { useOrganization } from "~/components/organization/hooks";
-import Layout from "~/components/organization/layout";
+import ShLayout from "~/components/Layout/shLayout";
 import { useRouter } from 'next/router'
 import { gql, useQuery } from '@apollo/client';
 import useSWR from 'swr'
@@ -15,13 +15,13 @@ const Organization = ({ organizationProper }) => {
     fetcher
   )
   return (
-    <Layout>
+    <ShLayout>
       {!data? (
         <h1>loading</h1>
       ) :
       (
         <>
-      <h1>{data.name}</h1>
+      <h1>=== {data.name} ===</h1>
       <Typography variant={"h3"} color={"textSecondary"}>level 1</Typography>
       <h1>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h1>
       <Grid container>
@@ -39,7 +39,7 @@ const Organization = ({ organizationProper }) => {
       </Grid>
       </>
     )}
-    </Layout>
+    </ShLayout>
   );
 };
 
