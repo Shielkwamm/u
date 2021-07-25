@@ -33,8 +33,8 @@ const StyleSheet = ({ style }) => (
       }
       body {
         margin: 0;
-        color:  ${style.colors[5].hex};
-        background-color: ${style.colors[4].hex};
+        color:  ${style.colors[5 % style.colors.length].hex };
+        background-color: ${style.colors[4 % style.colors.length].hex};
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
           "Helvetica Neue", Arial, Noto Sans, sans-serif, "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -48,10 +48,10 @@ const StyleSheet = ({ style }) => (
         font-family: ${style.fonts[1].family};
       }
       h3 {
-        color: ${style.colors[2].hex};
+        color: ${style.colors[2 % style.colors.length].hex};
       }
       a {
-        color: ${style.colors[3].hex};
+        color: ${style.colors[3 % style.colors.length].hex};
       }
       .container {
         margin: 0 auto;

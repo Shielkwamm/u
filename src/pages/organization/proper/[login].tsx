@@ -11,33 +11,36 @@ const fetcher = url => fetch(url).then(res => res.json());
 const Organization = ({ organizationProper }) => {
   const router = useRouter();
   const organizationName = router.query.login;
-  const { data, error } = useSWR(`https://raw.githubusercontent.com/${organizationName}/sh-proper/main/proper.json`,
+  const { data: organization, error: orgError } = useSWR(`https://raw.githubusercontent.com/${organizationName}/sh-proper/main/proper.json`,
+    fetcher
+  )
+  const { data: organizationStyle, error: orgStyleError } = useSWR(`https://raw.githubusercontent.com/${organizationName}/sh-proper/main/style/un/style.json`,
     fetcher
   )
   const getRandomColor = (index) => {
     //console.log(data?.style?.colors)
     let randomIndex:number = -1;
     while (randomIndex === index || randomIndex === -1) {
-      randomIndex = Math.floor(Math.random() * data?.style?.colors.length);
+      randomIndex = Math.floor(Math.random() * organizationStyle?.colors.length);
     }
-    return data?.style?.colors[randomIndex].hex;
+    return organizationStyle?.colors[randomIndex].hex;
   }
   return (
-    <ShLayout style={data?.style} title={organizationName}>
-      {!data? (
+    <ShLayout style={organizationStyle} title={organizationName}>
+      {!organization? (
         <h1>loading</h1>
       ) :
       (
         <>
-      <h1>=== {data.name} ===</h1>
+      <h1>=== {organization.name} ===</h1>
       <h2 style={{textAlign: "right"}}>level 1</h2>
       <div style={{height: "5px", backgroundColor: `${getRandomColor(4)}`}}/>
-      <h2 style={{textAlign: "center"}}>{data.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h2>
+      <h2 style={{textAlign: "center"}}>{organization.glyphs.map( (glyph, index) => <span key={index}>{`${glyph}`}</span>)}</h2>
       <Grid container>
-        {data?.style?.colors.map((color, index) => (
+        {organizationStyle?.colors.map((color, index) => (
           <Grid key={index} item xs={4} style={{height: 240, backgroundColor: color.hex}}>
-            <p style={{fontFamily: data?.style?.fonts[0].family, color: getRandomColor(index)}}>{color.name}</p>
-            <p style={{fontFamily: data?.style?.fonts[1].family, color: getRandomColor(index)}}>{color.hex}</p>
+            <p style={{fontFamily: organizationStyle?.fonts[0].family, color: getRandomColor(index)}}>{color.name}</p>
+            <p style={{fontFamily: organizationStyle?.fonts[1].family, color: getRandomColor(index)}}>{color.hex}</p>
           </Grid>
         ))}
         
